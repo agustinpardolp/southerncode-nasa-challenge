@@ -1,0 +1,50 @@
+:root {
+  --white: #fff;
+  --jet: #373737;
+  --seashell: #F1F0F0;
+  --fontVar: "Fira Sans", sans-serif;
+}
+
+/* Normalizes margin, padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--fontVar);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Normalizes font-size for headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: 400;
+}
+
+table > .icon-td {
+  padding: 0.1rem;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: var(--white);
+}
+
+thead th {
+  background-color: var(--ligthPrimaryConfirm);
+  color: var(--white);
+  font-weight: 400;
+  height: 5vh;
+  vertical-align: middle;
+}
+.table thead th {
+  vertical-align: middle !important; /* Exception just to overwright boostrap class */
+}
+
