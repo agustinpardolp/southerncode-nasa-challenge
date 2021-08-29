@@ -1,0 +1,1 @@
+export const defaultDate = "2021-08-26"

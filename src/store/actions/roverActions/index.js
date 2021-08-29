@@ -21,10 +21,10 @@ const fetchRoversByModelFailure = (data) => {
   };
 };
 
-export const fetchRoversByModel = (dispatch) => (roverName, query) => {
+export const fetchRoversByModel = (dispatch) => (roverName, query, page) => {
   dispatch(fetchRoversByModelRequest());
   return roverServices
-    .fetchRoversByModel(roverName, query)
+    .fetchRoversByModel(roverName, query, page)
     .then((data) => {
       return dispatch(fetchRoversByModelSuccess(data));
     })

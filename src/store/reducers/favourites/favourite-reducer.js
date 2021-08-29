@@ -1,5 +1,6 @@
 import { types } from "../../actions/roverActions/types";
 import { REQUEST_STATUS } from "../../../constants";
+import { saveToLocalStorage } from "../../../utils";
 
 export const favourites = (
   state = {
@@ -12,6 +13,7 @@ export const favourites = (
   const { payload: { data } = {} } = action;
   switch (action.type) {
     case types.SET_FAVOURITES:
+      saveToLocalStorage("queryData", data);
       return {
         ...state,
         data: data,

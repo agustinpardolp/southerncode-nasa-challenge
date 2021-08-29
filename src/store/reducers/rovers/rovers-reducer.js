@@ -28,7 +28,6 @@ export const rovers = (
         status: REQUEST_STATUS.FAILED,
         error,
       };
-
     default:
       return state;
   }

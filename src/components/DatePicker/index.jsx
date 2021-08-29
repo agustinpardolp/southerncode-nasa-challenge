@@ -10,7 +10,6 @@ const DatePicker = ({ label, variant, size, handleChange, keyValue }) => {
       variant={variant}
       size={size}
       type="date"
-      defaultValue={moment().format("YYYY-MM-DD")}
       onChange={(e) => handleChange(e, keyValue)}
     />
   );

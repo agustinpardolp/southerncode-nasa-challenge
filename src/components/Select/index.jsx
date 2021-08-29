@@ -6,24 +6,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Select as MaterialSelect } from "@material-ui/core";
 
 import { StyledSelectContainer } from "./styled-components";
-const Select = ({
-  options,
-  title,
-  handleSelectOption,
-  icon,
-  disableTranslation,
-  handleChange,
-  keyValue
-}) => {
+const Select = ({ options, handleChange, keyValue, placeholder, width }) => {
   // const intl = useIntl();
   return (
-    <StyledSelectContainer>
+    <StyledSelectContainer width={width}>
       <MaterialSelect
         labelId="demo-simple-select-outlined-label"
         id="demo-simple-select-outlined"
-        onChange={(e)=>handleChange(e, keyValue)}
-        label="Age"
-        defaultValue=''
+        onChange={(e) => handleChange(e, keyValue)}
+        defaultValue=""
+        placeholder={placeholder}
       >
         <MenuItem value="">
           <em>None</em>

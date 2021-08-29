@@ -1,79 +1,8 @@
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardMedia from "@material-ui/core/CardMedia";
-// import List from "@material-ui/core/List";
-// import ListItem from "@material-ui/core/ListItem";
-
-// import ListItemIcon from "@material-ui/core/ListItemAvatar";
 import PublicIcon from "@material-ui/icons/Public";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import CameraIcon from "@material-ui/icons/Camera";
 
-// const useStyles = makeStyles({
-//   root: {
-//     maxWidth: 345,
-//   },
-//   media: {
-//     height: 400,
-//   },
-// });
 
-// const PhotoCard = ({
-//   cameraName,
-//   earthDate,
-//   imgSrc,
-//   roverName,
-//   roverStatus,
-// }) => {
-//   const classes = useStyles();
-//   debugger;
-//   return (
-//     <Card className={classes.root}>
-//       <CardActionArea>
-//         <CardMedia
-//           className={classes.media}
-//           image={imgSrc}
-//           title="Contemplative Reptile"
-//         />
-//         <CardContent>
-//           <Typography gutterBottom variant="h5" component="h2">
-//             {roverName}
-//             <ListItemText primary="Status" secondary={roverStatus} />
-//           </Typography>
-//           <Typography variant="body2" color="textSecondary" component="p">
-//             <List className={classes.root}>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <PublicIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Earth Date" secondary={earthDate} />
-//               </ListItem>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <Brightness4Icon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Sol Date" secondary="Jan 7, 2014" />
-//               </ListItem>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <CameraIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Camera model" secondary={cameraName} />
-//               </ListItem>
-//             </List>
-//           </Typography>
-//         </CardContent>
-//       </CardActionArea>
-//       <CardActions></CardActions>
-//     </Card>
-//   );
-// };
-
-// export default PhotoCard;
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -97,6 +26,7 @@ const Card = ({
   height,
   width,
   backgroundSize,
+  sol
 }) => {
   const handleClick = (path) => {};
 
@@ -108,6 +38,9 @@ const Card = ({
         img={imgSrc}
         onClick={handleViewPhoto}
         backgroundSize={backgroundSize}
+        small={imgSrc}
+        large={imgSrc}
+        hideDownload
       >
         <OverlayAnimation onClick={() => handleClick()}>
           <StyledInfoContainer>
@@ -124,7 +57,7 @@ const Card = ({
                 </li>
                 <li>
                   <Brightness4Icon fontSize="small" />
-                  Sol Date: <span>{earthDate}</span>
+                  Sol Date: <span>{sol}</span>
                 </li>
                 <li>
                   {" "}

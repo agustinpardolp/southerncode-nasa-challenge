@@ -10,10 +10,7 @@ export const errorsFormHandler = (errors) => {
 };
 export const DEBOUNCE_DELAY_TIME = 200;
 
-export const debounce = (
-  func,
-  timeout = DEBOUNCE_DELAY_TIME
-) => {
+export const debounce = (func, timeout = DEBOUNCE_DELAY_TIME) => {
   let timer;
   return (...args) => {
     clearTimeout(timer);
@@ -21,4 +18,25 @@ export const debounce = (
       func(...args);
     }, timeout);
   };
+};
+
+export const saveToLocalStorage = (key, values) => {
+  debugger
+  try {
+    const data = JSON.stringify(values);
+    localStorage.setItem(key, data);
+  } catch (e) {
+    console.warn(e);
+  }
+};
+
+export const loadFromLocalStorage = (key) => {
+
+  try {
+    const data = JSON.parse(localStorage.getItem(key));
+    if (data === null) return undefined;
+    return data;
+  } catch (e) {
+    return undefined;
+  }
 };
