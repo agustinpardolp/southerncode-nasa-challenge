@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledBookMark = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin: 10px;
-  height: 10vh;
+  height: 3vh;
 
 `;
 export { StyledBookMark };

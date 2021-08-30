@@ -5,9 +5,6 @@ export const createActionTypes = (key, baseAction) => ({
   [`${baseAction}_FAILURE`]: `${key}/${baseAction}_FAILURE`,
 });
 
-export const errorsFormHandler = (errors) => {
-  return Object.entries(errors).length > 0;
-};
 export const DEBOUNCE_DELAY_TIME = 200;
 
 export const debounce = (func, timeout = DEBOUNCE_DELAY_TIME) => {
@@ -21,7 +18,6 @@ export const debounce = (func, timeout = DEBOUNCE_DELAY_TIME) => {
 };
 
 export const saveToLocalStorage = (key, values) => {
-  debugger
   try {
     const data = JSON.stringify(values);
     localStorage.setItem(key, data);
@@ -31,7 +27,6 @@ export const saveToLocalStorage = (key, values) => {
 };
 
 export const loadFromLocalStorage = (key) => {
-
   try {
     const data = JSON.parse(localStorage.getItem(key));
     if (data === null) return undefined;
@@ -39,4 +34,8 @@ export const loadFromLocalStorage = (key) => {
   } catch (e) {
     return undefined;
   }
+};
+
+export const removeFromLocalStorage = () => {
+  localStorage.removeItem('queryData');
 };

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Pagination from "@material-ui/lab/Pagination";
+import styled from 'styled-components';
+import Pagination from '@material-ui/lab/Pagination';
 
 const StyledPagination = styled(Pagination)``;
 const Container = styled.div`

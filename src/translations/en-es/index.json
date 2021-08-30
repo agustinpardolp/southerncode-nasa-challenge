@@ -1,0 +1,23 @@
+{
+  "navbar.title": "Rover Panel de Control",
+  "subtitle.photo": "Fotos Rover {roverName}",
+
+  "filter.earth": "Fecha terrestre",
+  "filter.sol": "Fecha marciana",
+  "filter.camera": "Tipo de cámara",
+  "filter.addToFavourites": "Agregar a favoritos",
+  "filter.removeFromFavourites": "Remover de favoritos",
+  "filter.favourites": "Favoritos",
+  
+
+  "card.status": "Estado",
+  "card.noResult": "No hay resultados",
+  "card.cameraModel": "Modelo de camara",
+
+  "navbar.english": "EN",
+  "navbar.spanish": "ES",
+
+  "select.none": "None",
+
+  "navbar.translate": "Cambiar idioma"
+}

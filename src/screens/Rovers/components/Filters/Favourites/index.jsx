@@ -1,15 +1,21 @@
-import React from "react";
-import Menu from "../../../../../components/Menu";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Menu from '../../../../../components/Menu';
+import { StyledContainer } from './styled-components';
 
-import { loadFromLocalStorage } from "../../../../../utils";
-
-const Favourites = ({ setBookmarkQuery }) => {
-  const favouritesList = loadFromLocalStorage("queryData");
-  return (
-    <div>
-      <Menu options={favouritesList} label="Favourites" onClick={setBookmarkQuery} />
-    </div>
-  );
-};
+const Favourites = ({ setBookmarkQuery, favouritesList }) => (
+  <StyledContainer>
+    <Menu
+      options={favouritesList}
+      label="filter.favourites"
+      onClick={setBookmarkQuery}
+    />
+  </StyledContainer>
+);
 
 export default Favourites;
+
+Favourites.propTypes = {
+  setBookmarkQuery: PropTypes.func.isRequired,
+  favouritesList: PropTypes.arrayOf.isRequired,
+};

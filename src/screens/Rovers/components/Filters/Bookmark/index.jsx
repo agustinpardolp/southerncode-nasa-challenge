@@ -1,49 +1,49 @@
-import React from "react";
-import Popover from "@material-ui/core/Popover";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
-import { StyledBookMark } from "./styled-components";
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
-const Bookmark = ({ handleAddBookmark, popoverLabel }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+import usePopover from '../../../../../hooks/usePopover';
+import Popover from '../../../../../components/Popover';
+import { popoverPosition } from '../../../../../components/Popover/constants';
 
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+import { StyledBookMark } from './styled-components';
 
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
+const Bookmark = ({ children, popoverLabel, handleClick }) => {
+  const {
+    anchorEl,
+    open,
+    handlePopoverOpen,
+    handlePopoverClose,
+  } = usePopover();
 
-  const open = Boolean(anchorEl);
   return (
     <StyledBookMark
+      onClick={handleClick}
       onMouseEnter={handlePopoverOpen}
       onMouseLeave={handlePopoverClose}
-      onClick={handleAddBookmark}
     >
       <Popover
-        id="mouse-over-popover"
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-
-        }}
         transformOrigin={{
-          vertical: "top",
-          horizontal:''
-  
+          vertical: popoverPosition.top,
+          horizontal: '',
         }}
         onClose={handlePopoverClose}
-        disableRestoreFocus
       >
-        <span>{popoverLabel}</span>
+        <span>
+          <FormattedMessage id={popoverLabel} />
+        </span>
       </Popover>
-      <BookmarkIcon  />
-      
+      {children}
     </StyledBookMark>
   );
 };
-
 export default Bookmark;
+
+Bookmark.propTypes = {
+  children: PropTypes.element.isRequired,
+  popoverLabel: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
+
+};

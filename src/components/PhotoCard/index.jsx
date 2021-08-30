@@ -1,12 +1,12 @@
-import PublicIcon from "@material-ui/icons/Public";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import CameraIcon from "@material-ui/icons/Camera";
+import PublicIcon from '@material-ui/icons/Public';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import CameraIcon from '@material-ui/icons/Camera';
+import { useIntl } from 'react-intl';
 
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import React from "react";
-import PropTypes from "prop-types";
-
-import { OverlayAnimation } from "../../utils/animations";
+import { OverlayAnimation } from '../../utils/animations';
 
 import {
   StyledTitle,
@@ -15,7 +15,7 @@ import {
   StyledSubTitle,
   StyledInfoContainer,
   StyledListContainer,
-} from "./styled-components";
+} from './styled-components';
 
 const Card = ({
   cameraName,
@@ -26,45 +26,48 @@ const Card = ({
   height,
   width,
   backgroundSize,
-  sol
+  sol,
 }) => {
-  const handleClick = (path) => {};
-
-  const handleViewPhoto = () => {};
+  const intl = useIntl();
 
   return (
     <StyledContainer height={height} width={width}>
       <StyledPhotoDiv
         img={imgSrc}
-        onClick={handleViewPhoto}
         backgroundSize={backgroundSize}
         small={imgSrc}
         large={imgSrc}
         hideDownload
       >
-        <OverlayAnimation onClick={() => handleClick()}>
+        <OverlayAnimation>
           <StyledInfoContainer>
             <StyledTitle>
               <span>{roverName}</span>
             </StyledTitle>
-            <StyledSubTitle>Status: {roverStatus}</StyledSubTitle>
+            <StyledSubTitle>
+              <>
+                {intl.formatMessage({ id: 'card.status' })}
+                {roverStatus}
+              </>
+            </StyledSubTitle>
             <StyledListContainer>
               <ul>
                 <li>
                   <PublicIcon fontSize="small" />
-                  Earth Date: 
+                  {`${intl.formatMessage({ id: 'filter.earth' })}: `}
                   <span>{earthDate}</span>
                 </li>
                 <li>
                   <Brightness4Icon fontSize="small" />
-                  Sol Date: <span>{sol}</span>
+                  {`${intl.formatMessage({ id: 'filter.sol' })}: `}
+                  <span>{sol}</span>
                 </li>
                 <li>
-                  {" "}
                   <CameraIcon fontSize="small" />
-                  Camera model: <span>{cameraName}</span>{" "}
+                  {`${intl.formatMessage({ id: 'card.cameraModel' })}: `}
+                  <span>{cameraName}</span>
                 </li>
-                <li></li>
+                <li />
               </ul>
             </StyledListContainer>
           </StyledInfoContainer>
@@ -75,17 +78,18 @@ const Card = ({
 };
 export default Card;
 
+Card.defaultProps = {
+  height: '100%',
+  width: '100%',
+};
 Card.propTypes = {
-  element: PropTypes.object,
-  handleChangeImage: PropTypes.func,
-  fontSize: PropTypes.string,
-  category: PropTypes.string,
-  path: PropTypes.string,
-  noTitle: PropTypes.bool,
-  filePath: PropTypes.string,
-  img: PropTypes.string,
-  callBack: PropTypes.func,
+  roverStatus: PropTypes.string.isRequired.isRequired,
+  cameraName: PropTypes.string.isRequired,
+  earthDate: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  roverName: PropTypes.string.isRequired,
+  sol: PropTypes.string.isRequired,
   height: PropTypes.string,
   width: PropTypes.string,
-  backgroundSize: PropTypes.string,
+  backgroundSize: PropTypes.string.isRequired,
 };

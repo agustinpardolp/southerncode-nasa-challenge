@@ -1,17 +1,11 @@
-import { combineReducers } from "redux";
-import { notification } from "./notification/notifications-reducer";
-import { rovers } from "./rovers/rovers-reducer";
-import { favourites } from "./favourites/favourite-reducer";
+import { combineReducers } from 'redux';
+
+import { rovers } from './rovers/rovers-reducer';
 
 const allReducers = combineReducers({
-  notification,
   rovers,
-  favourites,
-
 });
 
-const reducers = (state, action) => {
-  return allReducers(state, action);
-};
+const reducers = (state, action) => allReducers(state, action);
 
 export default reducers;
