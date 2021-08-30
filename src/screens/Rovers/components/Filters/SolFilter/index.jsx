@@ -1,19 +1,24 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import { StyledFilterContainer, IconContainer } from "../styled-components";
-import Input from "../../../../../components/Input";
-import { queryKeys } from "../../../constants";
+import { StyledFilterContainer, IconContainer } from '../styled-components';
+import Input from '../../../../../components/Input';
+import { queryKeys } from '../../../constants';
 
 const SolFilter = ({ handleInputChange }) => {
+  const intl = useIntl();
   return (
     <StyledFilterContainer>
       <IconContainer>
         <Brightness4Icon />
-        <h4>Sun date</h4>
+        <h4>
+          <FormattedMessage id="filter.sol" />
+        </h4>
       </IconContainer>
       <Input
-        placeholder="Sol date..."
+        placeholder={`${intl.formatMessage({ id: 'filter.sol' })}...`}
         variant="outlined"
         size="small"
         type="number"
@@ -25,3 +30,8 @@ const SolFilter = ({ handleInputChange }) => {
 };
 
 export default SolFilter;
+
+SolFilter.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+
+};

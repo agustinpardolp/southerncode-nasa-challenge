@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledNavbar = styled.div`
   background-color: var(--jet);
@@ -15,14 +15,14 @@ const StyledNavbarContainer = styled.div`
   img {
     height: 100%;
   }
-  h2, svg {
+  h2,
+  svg {
     color: var(--white);
     font-size: 18px;
   }
-  svg{
+  svg {
     margin-left: 5px;
   }
-
 `;
 const StyledSearchContainer = styled.div`
   align-items: center;
@@ -38,6 +38,22 @@ const SearchIconContainer = styled.div`
 const StyledTitle = styled.div`
   display: flex;
   align-items: center;
+  svg {
+    font-size: 24px;
+  }
+`;
+
+const TranslateContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  ul {
+    list-style: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 export {
   StyledNavbar,
@@ -45,4 +61,5 @@ export {
   StyledSearchContainer,
   SearchIconContainer,
   StyledTitle,
+  TranslateContainer,
 };

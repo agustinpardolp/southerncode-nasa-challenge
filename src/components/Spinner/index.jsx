@@ -1,13 +1,11 @@
-import React from "react";
+import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { StyledSpinnerContainer } from "./styled-components";
+import { StyledSpinnerContainer } from './styled-components';
 
-const Spinner = () => {
-  return (
-    <StyledSpinnerContainer>
-      <CircularProgress disableShrink />
-    </StyledSpinnerContainer>
-  );
-};
+const Spinner = () => (
+  <StyledSpinnerContainer>
+    <CircularProgress disableShrink />
+  </StyledSpinnerContainer>
+);
 
 export default Spinner;

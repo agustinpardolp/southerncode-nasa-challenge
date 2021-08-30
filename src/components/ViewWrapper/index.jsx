@@ -1,20 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FormattedMessage } from "react-intl";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { StyledWrapper, StyledTitle } from "./styled-components";
+import { StyledWrapper, StyledTitle } from './styled-components';
 
-const ViewWrapper = ({ title = "", children }) => {
-  return (
-    <StyledWrapper>
-      <StyledTitle>{title}</StyledTitle>
-      {children}
-    </StyledWrapper>
-  );
-};
+const ViewWrapper = ({ title = '', children }) => (
+  <StyledWrapper>
+    <StyledTitle>{title}</StyledTitle>
+    {children}
+  </StyledWrapper>
+);
 
 ViewWrapper.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.element,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 export default ViewWrapper;

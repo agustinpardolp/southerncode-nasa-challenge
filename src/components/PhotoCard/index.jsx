@@ -1,83 +1,12 @@
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardMedia from "@material-ui/core/CardMedia";
-// import List from "@material-ui/core/List";
-// import ListItem from "@material-ui/core/ListItem";
+import PublicIcon from '@material-ui/icons/Public';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import CameraIcon from '@material-ui/icons/Camera';
+import { useIntl } from 'react-intl';
 
-// import ListItemIcon from "@material-ui/core/ListItemAvatar";
-import PublicIcon from "@material-ui/icons/Public";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import CameraIcon from "@material-ui/icons/Camera";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-// const useStyles = makeStyles({
-//   root: {
-//     maxWidth: 345,
-//   },
-//   media: {
-//     height: 400,
-//   },
-// });
-
-// const PhotoCard = ({
-//   cameraName,
-//   earthDate,
-//   imgSrc,
-//   roverName,
-//   roverStatus,
-// }) => {
-//   const classes = useStyles();
-//   debugger;
-//   return (
-//     <Card className={classes.root}>
-//       <CardActionArea>
-//         <CardMedia
-//           className={classes.media}
-//           image={imgSrc}
-//           title="Contemplative Reptile"
-//         />
-//         <CardContent>
-//           <Typography gutterBottom variant="h5" component="h2">
-//             {roverName}
-//             <ListItemText primary="Status" secondary={roverStatus} />
-//           </Typography>
-//           <Typography variant="body2" color="textSecondary" component="p">
-//             <List className={classes.root}>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <PublicIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Earth Date" secondary={earthDate} />
-//               </ListItem>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <Brightness4Icon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Sol Date" secondary="Jan 7, 2014" />
-//               </ListItem>
-//               <ListItem>
-//                 <ListItemIcon>
-//                   <CameraIcon />
-//                 </ListItemIcon>
-//                 <ListItemText primary="Camera model" secondary={cameraName} />
-//               </ListItem>
-//             </List>
-//           </Typography>
-//         </CardContent>
-//       </CardActionArea>
-//       <CardActions></CardActions>
-//     </Card>
-//   );
-// };
-
-// export default PhotoCard;
-import React from "react";
-import PropTypes from "prop-types";
-
-import { OverlayAnimation } from "../../utils/animations";
+import { OverlayAnimation } from '../../utils/animations';
 
 import {
   StyledTitle,
@@ -86,7 +15,7 @@ import {
   StyledSubTitle,
   StyledInfoContainer,
   StyledListContainer,
-} from "./styled-components";
+} from './styled-components';
 
 const Card = ({
   cameraName,
@@ -97,41 +26,48 @@ const Card = ({
   height,
   width,
   backgroundSize,
+  sol,
 }) => {
-  const handleClick = (path) => {};
-
-  const handleViewPhoto = () => {};
+  const intl = useIntl();
 
   return (
     <StyledContainer height={height} width={width}>
       <StyledPhotoDiv
         img={imgSrc}
-        onClick={handleViewPhoto}
         backgroundSize={backgroundSize}
+        small={imgSrc}
+        large={imgSrc}
+        hideDownload
       >
-        <OverlayAnimation onClick={() => handleClick()}>
+        <OverlayAnimation>
           <StyledInfoContainer>
             <StyledTitle>
               <span>{roverName}</span>
             </StyledTitle>
-            <StyledSubTitle>Status: {roverStatus}</StyledSubTitle>
+            <StyledSubTitle>
+              <>
+                {intl.formatMessage({ id: 'card.status' })}
+                {roverStatus}
+              </>
+            </StyledSubTitle>
             <StyledListContainer>
               <ul>
                 <li>
                   <PublicIcon fontSize="small" />
-                  Earth Date: 
+                  {`${intl.formatMessage({ id: 'filter.earth' })}: `}
                   <span>{earthDate}</span>
                 </li>
                 <li>
                   <Brightness4Icon fontSize="small" />
-                  Sol Date: <span>{earthDate}</span>
+                  {`${intl.formatMessage({ id: 'filter.sol' })}: `}
+                  <span>{sol}</span>
                 </li>
                 <li>
-                  {" "}
                   <CameraIcon fontSize="small" />
-                  Camera model: <span>{cameraName}</span>{" "}
+                  {`${intl.formatMessage({ id: 'card.cameraModel' })}: `}
+                  <span>{cameraName}</span>
                 </li>
-                <li></li>
+                <li />
               </ul>
             </StyledListContainer>
           </StyledInfoContainer>
@@ -142,17 +78,18 @@ const Card = ({
 };
 export default Card;
 
+Card.defaultProps = {
+  height: '100%',
+  width: '100%',
+};
 Card.propTypes = {
-  element: PropTypes.object,
-  handleChangeImage: PropTypes.func,
-  fontSize: PropTypes.string,
-  category: PropTypes.string,
-  path: PropTypes.string,
-  noTitle: PropTypes.bool,
-  filePath: PropTypes.string,
-  img: PropTypes.string,
-  callBack: PropTypes.func,
+  roverStatus: PropTypes.string.isRequired.isRequired,
+  cameraName: PropTypes.string.isRequired,
+  earthDate: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  roverName: PropTypes.string.isRequired,
+  sol: PropTypes.string.isRequired,
   height: PropTypes.string,
   width: PropTypes.string,
-  backgroundSize: PropTypes.string,
+  backgroundSize: PropTypes.string.isRequired,
 };

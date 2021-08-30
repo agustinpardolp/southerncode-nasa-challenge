@@ -1,21 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Tabs from "./Tabs";
-import { StyledWrapper } from "../ViewWrapper/styled-components";
+import Tabs from './Tabs';
+import { StyledWrapper } from '../ViewWrapper/styled-components';
 
-function ContentWrapper({ tabs, children, colValue, ccsClass }) {
+function ContentWrapper({ tabs, children }) {
   return (
     <StyledWrapper>
-      <Tabs tabs={tabs}></Tabs>
+      <Tabs tabs={tabs} />
       {children}
     </StyledWrapper>
   );
 }
+
 ContentWrapper.propTypes = {
-  tabs: PropTypes.array,
-  children: PropTypes.element,
-  colValue: PropTypes.string,
-  ccsClass: PropTypes.string,
+  tabs: PropTypes.arrayOf.isRequired,
+  children: PropTypes.element.isRequired,
 };
 export default ContentWrapper;

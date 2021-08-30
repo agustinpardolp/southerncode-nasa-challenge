@@ -1,0 +1,22 @@
+{
+  "navbar.title": "Rover Control Panel",
+  "subtitle.photo": "Rover {roverName} photos",
+
+  "filter.earth": "Earth date",
+  "filter.sol": "Martial Sun date",
+  "filter.camera": "Camera Type",
+  "filter.addToFavourites": "Add to favourites",
+  "filter.removeFromFavourites": "Remove from favourites",
+  "filter.favourites": "Favourites",
+
+  "card.status": "Status",
+  "card.noResult": "No results",
+  "card.cameraModel": "Camara model",
+
+  "navbar.english": "EN",
+  "navbar.spanish": "ES",
+
+  "select.none": "None",
+
+  "navbar.translate": "Change language"
+}

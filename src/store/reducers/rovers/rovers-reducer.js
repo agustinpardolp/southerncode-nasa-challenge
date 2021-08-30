@@ -1,13 +1,13 @@
-import { types } from "../../actions/roverActions/types";
-import { REQUEST_STATUS } from "../../../constants";
+import { types } from '../../actions/roverActions/types';
+import { REQUEST_STATUS } from '../../../constants';
 
 export const rovers = (
   state = {
     data: [],
     status: REQUEST_STATUS.NOT_LOADED,
-    error: "",
+    error: '',
   },
-  action
+  action,
 ) => {
   const { payload: { error, data } = {} } = action;
   switch (action.type) {
@@ -19,7 +19,7 @@ export const rovers = (
       };
     case types.FETCH_ROVERS_BY_MODEL_SUCCESS:
       return {
-        data: data,
+        data,
         status: REQUEST_STATUS.LOADED,
       };
     case types.FETCH_ROVERS_BY_MODEL_FAILURE:
@@ -28,7 +28,6 @@ export const rovers = (
         status: REQUEST_STATUS.FAILED,
         error,
       };
-
     default:
       return state;
   }

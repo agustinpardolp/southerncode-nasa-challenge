@@ -1,52 +1,46 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FormattedMessage, useIntl } from "react-intl";
-import MenuItem from "@material-ui/core/MenuItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
-import { Select as MaterialSelect } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
 
-import { StyledSelectContainer } from "./styled-components";
+import { Select as MaterialSelect } from '@material-ui/core';
+
+import { StyledSelectContainer } from './styled-components';
+
 const Select = ({
-  options,
-  title,
-  handleSelectOption,
-  icon,
-  disableTranslation,
-  handleChange,
-  keyValue
+  options, handleChange, keyValue, placeholder, width,
 }) => {
-  // const intl = useIntl();
+  const intl = useIntl();
   return (
-    <StyledSelectContainer>
+    <StyledSelectContainer width={width}>
       <MaterialSelect
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
-        onChange={(e)=>handleChange(e, keyValue)}
-        label="Age"
-        defaultValue=''
+        onChange={(e) => handleChange(e, keyValue)}
+        defaultValue=""
+        placeholder={placeholder}
       >
         <MenuItem value="">
-          <em>None</em>
+          <em>{intl.formatMessage({ id: 'select.none' })}</em>
         </MenuItem>
-        {options &&
-          options.map((option) => {
-            return (
-              <MenuItem key={option.id} value={option.value}>
-                {option.label}
-              </MenuItem>
-            );
-          })}
+        {options
+          && options.map((option) => (
+            <MenuItem key={option.id} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
       </MaterialSelect>
     </StyledSelectContainer>
   );
 };
-
+Select.defaultProps = {
+  width: '12vw',
+};
 Select.propTypes = {
-  options: PropTypes.array,
-  title: PropTypes.string,
-  handleSelectOption: PropTypes.func,
-  icon: PropTypes.element,
-  disableTranslation: PropTypes.bool,
+  options: PropTypes.arrayOf.isRequired,
+  keyValue: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  width: PropTypes.bool,
 };
 
 export default Select;

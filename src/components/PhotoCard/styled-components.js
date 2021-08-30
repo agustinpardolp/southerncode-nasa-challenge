@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledPhotoDiv = styled.div`
   margin: 1%;
   height: 100%;
   background: ${(props) => `url("${props.img}") no-repeat center;`};
-  background-size: ${(props) =>
-    props.backgroundSize ? props.backgroundSize : "cover"};
+  background-size: ${(props) => (props.backgroundSize ? props.backgroundSize : 'cover')};
   position: relative;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -24,9 +23,9 @@ const StyledContainer = styled.span`
   position: relative;
   display: block;
   overflow: hidden;
-  height: ${(props) => (props.height ? props.height : "100%")};
+  height: ${(props) => (props.height ? props.height : '100%')};
   padding: 5px;
-  max-width: ${(props) => (props.width ? props.width : "100%")};
+  max-width: ${(props) => (props.width ? props.width : '100%')};
   li {
     color: var(--white);
     display: flex;
