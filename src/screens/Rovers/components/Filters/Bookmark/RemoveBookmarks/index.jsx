@@ -6,7 +6,7 @@ import Bookmark from '..';
 
 const RemoveBookmark = ({ popoverLabel, handleClick }) => (
   <Bookmark popoverLabel={popoverLabel} handleClick={handleClick}>
-    <DeleteOutlineIcon />
+    <DeleteOutlineIcon data-testid="remove_bookmark" />
   </Bookmark>
 );
 

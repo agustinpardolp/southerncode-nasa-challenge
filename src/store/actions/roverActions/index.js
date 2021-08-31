@@ -15,7 +15,7 @@ const fetchRoversByModelFailure = (data) => ({
   payload: data,
 });
 
-export const fetchRoversByModel = (dispatch) => (roverName, query, page) => {
+export const fetchRoversByModel = (roverName, query, page) => (dispatch) => {
   dispatch(fetchRoversByModelRequest());
   return roverServices
     .fetchRoversByModel(roverName, query, page)

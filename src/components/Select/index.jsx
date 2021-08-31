@@ -9,7 +9,12 @@ import { Select as MaterialSelect } from '@material-ui/core';
 import { StyledSelectContainer } from './styled-components';
 
 const Select = ({
-  options, handleChange, keyValue, placeholder, width,
+  options,
+  handleChange,
+  keyValue,
+  placeholder,
+  width,
+  name,
 }) => {
   const intl = useIntl();
   return (
@@ -18,6 +23,8 @@ const Select = ({
         onChange={(e) => handleChange(e, keyValue)}
         defaultValue=""
         placeholder={placeholder}
+        aria-label={name}
+        data-testid="select"
       >
         <MenuItem value="">
           <em>{intl.formatMessage({ id: 'select.none' })}</em>
@@ -34,13 +41,20 @@ const Select = ({
 };
 Select.defaultProps = {
   width: '12vw',
+  placeholder: '',
+  options: [],
 };
 Select.propTypes = {
-  options: PropTypes.arrayOf.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  })),
   keyValue: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  width: PropTypes.bool,
+  placeholder: PropTypes.string,
+  width: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 export default Select;

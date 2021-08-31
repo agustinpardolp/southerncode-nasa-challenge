@@ -22,6 +22,7 @@ const CameraFilter = ({ handleSelectChange }) => {
         options={availableCamerasByModel[type]}
         handleChange={handleSelectChange}
         keyValue={queryKeys.camera}
+        name="camera-select"
       />
     </StyledFilterContainer>
   );

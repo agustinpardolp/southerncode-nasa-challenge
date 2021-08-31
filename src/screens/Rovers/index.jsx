@@ -1,6 +1,8 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ErrorIcon from '@material-ui/icons/Error';
 
@@ -17,17 +19,7 @@ import Filters from './components/Filters';
 import Pagination from './components/Pagination';
 import { photoCardHeight, photoCardWidth } from './constants';
 
-const Rovers = () => {
-  const dispatch = useDispatch();
-  const fetchRovers = dispatch(fetchRoversByModel);
-  const intl = useIntl();
-
-  const roversData = useSelector((state) => ({
-    roverList: state.rovers.data.photos || state.rovers.data.latest_photos,
-    roverStatus: state.rovers.status,
-  }));
-
-  const { type } = useParams();
+const Rovers = ({ fetchRoversByModel, roverList, status }) => {
   const {
     query,
     page,
@@ -39,17 +31,19 @@ const Rovers = () => {
     removeFilter,
     bookmarks,
   } = useFilters('');
+  const { type } = useParams();
+  const intl = useIntl();
 
   useEffect(() => {
-    fetchRovers(type, query, page);
+    fetchRoversByModel(type, query, page);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, type, page]);
 
-  const onRenderList = useMemo(() => (roversData.roverList?.length
-    ? (
+  const onRenderList = useMemo(
+    () => (roverList?.length ? (
       <CardGrid>
-        {roversData.roverList.map((value) => (
+        {roverList.map((value) => (
           <PhotoCard
             cameraName={value.camera.name}
             earthDate={value.earth_date}
@@ -63,15 +57,16 @@ const Rovers = () => {
           />
         ))}
       </CardGrid>
-    )
-    : (
+    ) : (
       <StyledNoData>
         <ErrorIcon />
         <span>
           <FormattedMessage id="card.noResult" />
         </span>
       </StyledNoData>
-    )), [roversData.roverList]);
+    )),
+    [roverList],
+  );
   return (
     <ViewWrapper
       title={intl.formatMessage({ id: 'subtitle.photo' }, { roverName: type })}
@@ -88,17 +83,47 @@ const Rovers = () => {
           bookmarks={bookmarks}
         />
 
-        {roversData.roverStatus === REQUEST_STATUS.LOADING
-          ? (
-            <Spinner />
-          )
-          : (
-            <>{onRenderList}</>
-          )}
+        {status === REQUEST_STATUS.LOADING ? <Spinner /> : <>{onRenderList}</>}
         <Pagination handleChange={handlePagination} currentPage={page} />
       </>
     </ViewWrapper>
   );
 };
 
-export default Rovers;
+export const mapStateToProps = (state) => {
+  const {
+    rovers: { data: roverList, status },
+  } = state;
+  return {
+    roverList,
+    status,
+  };
+};
+export const mapDispatchToProps = {
+  fetchRoversByModel,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Rovers);
+
+Rovers.propTypes = {
+  fetchRoversByModel: PropTypes.func.isRequired,
+  roverList: PropTypes.arrayOf(PropTypes.shape({
+    camera: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      rover_id: PropTypes.number.isRequired,
+      full_name: PropTypes.string.isRequired,
+    },
+    earth_date: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    img_src: PropTypes.string.isRequired,
+    rover: {
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      landing_date: PropTypes.string.isRequired,
+      launch_date: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+    },
+    sol: PropTypes.number.isRequired,
+  })).isRequired,
+  status: PropTypes.string.isRequired,
+};

@@ -59,5 +59,9 @@ Filters.propTypes = {
   saveFilter: PropTypes.func.isRequired,
   setBookmarkQuery: PropTypes.func.isRequired,
   removeFilter: PropTypes.func.isRequired,
-  bookmarks: PropTypes.arrayOf.isRequired,
+  bookmarks: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  })).isRequired,
 };

@@ -38,11 +38,15 @@ const Translations = ({ handleChangeLanguage }) => {
       <TranslateContainer>
         <TranslateIcon fontSize="large" />
         <ul>
-          <li value="en-us" onClick={handleChangeLanguage}>
-            <FormattedMessage id="navbar.english" />
+          <li>
+            <button value="en-us" type="button" onClick={handleChangeLanguage} data-testid="change-language">
+              <FormattedMessage id="navbar.english" />
+            </button>
           </li>
-          <li value="en-es" onClick={handleChangeLanguage}>
-            <FormattedMessage id="navbar.spanish" />
+          <li>
+            <button value="en-es" type="button" onClick={handleChangeLanguage}>
+              <FormattedMessage id="navbar.spanish" />
+            </button>
           </li>
         </ul>
       </TranslateContainer>

@@ -31,7 +31,7 @@ const Card = ({
   const intl = useIntl();
 
   return (
-    <StyledContainer height={height} width={width}>
+    <StyledContainer height={height} width={width} data-testid="photo_card">
       <StyledPhotoDiv
         img={imgSrc}
         backgroundSize={backgroundSize}
@@ -46,7 +46,7 @@ const Card = ({
             </StyledTitle>
             <StyledSubTitle>
               <>
-                {intl.formatMessage({ id: 'card.status' })}
+                {`${intl.formatMessage({ id: 'card.status' })}: `}
                 {roverStatus}
               </>
             </StyledSubTitle>
@@ -81,15 +81,16 @@ export default Card;
 Card.defaultProps = {
   height: '100%',
   width: '100%',
+  backgroundSize: 'cover',
 };
 Card.propTypes = {
-  roverStatus: PropTypes.string.isRequired.isRequired,
+  roverStatus: PropTypes.string.isRequired,
   cameraName: PropTypes.string.isRequired,
   earthDate: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
   roverName: PropTypes.string.isRequired,
-  sol: PropTypes.string.isRequired,
+  sol: PropTypes.number.isRequired,
   height: PropTypes.string,
   width: PropTypes.string,
-  backgroundSize: PropTypes.string.isRequired,
+  backgroundSize: PropTypes.string,
 };
