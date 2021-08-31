@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
 const StyledPhotoDiv = styled.div`
-  margin: 1%;
-  height: 100%;
+  backface-visibility: hidden;
   background: ${(props) => `url("${props.img}") no-repeat center;`};
   background-size: ${(props) => (props.backgroundSize ? props.backgroundSize : 'cover')};
+  height: 100%;
+  margin: 1%;
   position: relative;
-  -webkit-transform: scale(1);
   transform: scale(1);
   transition: transform 0.3s ease-in-out;
-  backface-visibility: hidden;
   width: 100%;
   &:hover {
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
     backface-visibility: hidden;
@@ -20,16 +18,16 @@ const StyledPhotoDiv = styled.div`
 `;
 
 const StyledContainer = styled.span`
-  position: relative;
   display: block;
-  overflow: hidden;
   height: ${(props) => (props.height ? props.height : '100%')};
-  padding: 5px;
   max-width: ${(props) => (props.width ? props.width : '100%')};
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
   li {
+    align-items: center;
     color: var(--white);
     display: flex;
-    align-items: center;
     font-size: 0.7rem;
     margin: 2px;
     svg {

@@ -10,8 +10,8 @@ const StyledNavbarContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
   height: 100%;
+  padding: 20px;
   img {
     height: 100%;
   }
@@ -36,8 +36,8 @@ const SearchIconContainer = styled.div`
 `;
 
 const StyledTitle = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   svg {
     font-size: 24px;
   }

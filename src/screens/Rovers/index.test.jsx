@@ -12,6 +12,7 @@ import { getFullWrappedComponent, loadFromLocalStorage } from '../../utils';
 import { ROVER_ENDPOINT } from '../../services/roverServices/constants';
 import { types } from '../../store/actions/roverActions/types';
 import { store } from '../../store';
+import { localStorageQueryKey } from '../../hooks/constants';
 
 const API_KEY = 'LlhJfgLsPdIXCFo1OGBciAH1vOMinP8W8xtRb7wc';
 const server = setupServer(
@@ -134,12 +135,12 @@ describe('Rover view', () => {
     expect(urlInput).toHaveValue(3223);
     const addBookmark = await screen.findByTestId('add_bookmark');
     fireEvent.click(addBookmark);
-    expect(loadFromLocalStorage('queryData')).toHaveLength(1);
+    expect(loadFromLocalStorage(localStorageQueryKey)).toHaveLength(1);
   });
 
   test('Remove bookmark correctly', async () => {
     const removeBookmark = await screen.findByTestId('remove_bookmark');
     fireEvent.click(removeBookmark);
-    expect(loadFromLocalStorage('queryData')).toBe(undefined);
+    expect(loadFromLocalStorage(localStorageQueryKey)).toBe(undefined);
   });
 });

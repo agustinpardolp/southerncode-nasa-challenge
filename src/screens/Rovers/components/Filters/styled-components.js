@@ -7,8 +7,8 @@ const StyledFilterContainer = styled.div`
   border-radius: 8px;
   display: table;
   justify-content: space-between;
-  padding: 20px;
   margin: 10px;
+  padding: 20px;
   h4 {
     margin: 10px;
   }

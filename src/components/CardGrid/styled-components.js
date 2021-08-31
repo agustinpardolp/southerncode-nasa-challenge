@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const StyledCardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
   margin:3rem;
 `;
 

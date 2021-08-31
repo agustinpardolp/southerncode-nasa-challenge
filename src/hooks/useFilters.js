@@ -6,13 +6,13 @@ import {
   removeFromLocalStorage,
   saveToLocalStorage,
 } from '../utils';
-import { transformQueryArray } from './constants';
+import { localStorageQueryKey, transformQueryArray } from './constants';
 
 const useFilters = (initialState) => {
   const [queryArray, setQueryArray] = useState([initialState]);
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [bookmarks, setBookmarks] = useState(loadFromLocalStorage('queryData'));
+  const [bookmarks, setBookmarks] = useState(loadFromLocalStorage(localStorageQueryKey));
 
   const createQuery = () => {
     const queries = queryArray.map((item) => item.query).join('');
@@ -88,16 +88,16 @@ const useFilters = (initialState) => {
   };
 
   const saveFilter = () => {
-    if (loadFromLocalStorage('queryData')) {
-      const currentDataValues = loadFromLocalStorage('queryData');
+    if (loadFromLocalStorage(localStorageQueryKey)) {
+      const currentDataValues = loadFromLocalStorage(localStorageQueryKey);
       if (currentDataValues.filter((val) => val.value === query)) {
         const newValues = transformQueryArray(currentDataValues.length, query);
-        saveToLocalStorage('queryData', [...currentDataValues, ...newValues]);
+        saveToLocalStorage(localStorageQueryKey, [...currentDataValues, ...newValues]);
         setBookmarks([...currentDataValues, ...newValues]);
       }
     } else {
       const newValues = transformQueryArray(0, query);
-      saveToLocalStorage('queryData', newValues);
+      saveToLocalStorage(localStorageQueryKey, newValues);
       setBookmarks(newValues);
     }
   };

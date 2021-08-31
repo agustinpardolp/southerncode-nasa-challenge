@@ -5,6 +5,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 import LanguageWrapper from '../components/LenguageWrapper';
+import { localStorageQueryKey } from '../hooks/constants';
 
 export const DEBOUNCE_DELAY_TIME = 200;
 
@@ -34,7 +35,7 @@ export const loadFromLocalStorage = (key) => {
 };
 
 export const removeFromLocalStorage = () => {
-  localStorage.removeItem('queryData');
+  localStorage.removeItem(localStorageQueryKey);
 };
 
 export const getFullWrappedComponent = (
