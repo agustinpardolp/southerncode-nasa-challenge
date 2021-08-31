@@ -9,13 +9,22 @@ const Favourites = ({ setBookmarkQuery, favouritesList }) => (
       options={favouritesList}
       label="filter.favourites"
       onClick={setBookmarkQuery}
+      dataTestid="favourites"
     />
   </StyledContainer>
 );
 
 export default Favourites;
 
+Favourites.defaultProps = {
+  favouritesList: [],
+
+};
 Favourites.propTypes = {
   setBookmarkQuery: PropTypes.func.isRequired,
-  favouritesList: PropTypes.arrayOf.isRequired,
+  favouritesList: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  })),
 };

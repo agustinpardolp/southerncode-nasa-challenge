@@ -45,5 +45,4 @@ Bookmark.propTypes = {
   children: PropTypes.element.isRequired,
   popoverLabel: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
-
 };

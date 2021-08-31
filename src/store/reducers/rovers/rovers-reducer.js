@@ -1,4 +1,6 @@
+/* eslint-disable import/no-cycle */
 import { types } from '../../actions/roverActions/types';
+
 import { REQUEST_STATUS } from '../../../constants';
 
 export const rovers = (
@@ -19,7 +21,7 @@ export const rovers = (
       };
     case types.FETCH_ROVERS_BY_MODEL_SUCCESS:
       return {
-        data,
+        data: data.latest_photos || data.photos,
         status: REQUEST_STATUS.LOADED,
       };
     case types.FETCH_ROVERS_BY_MODEL_FAILURE:

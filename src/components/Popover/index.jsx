@@ -43,9 +43,14 @@ const Popover = ({
 
 export default Popover;
 
+Popover.defaultProps = {
+  open: false,
+  anchorEl: ' ',
+  handlePopoverClose: () => {},
+};
 Popover.propTypes = {
-  open: PropTypes.bool.isRequired.isRequired,
-  anchorEl: PropTypes.string.isRequired.isRequired,
-  handlePopoverClose: PropTypes.func.isRequired.isRequired,
-  children: PropTypes.func.isRequired.isRequired,
+  open: PropTypes.bool,
+  anchorEl: PropTypes.string,
+  handlePopoverClose: PropTypes.func,
+  children: PropTypes.objectOf.isRequired,
 };

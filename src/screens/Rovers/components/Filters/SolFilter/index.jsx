@@ -22,6 +22,7 @@ const SolFilter = ({ handleInputChange }) => {
         variant="outlined"
         size="small"
         type="number"
+        name="martial-sun-input"
         handleChange={handleInputChange}
         keyValue={queryKeys.sol}
       />

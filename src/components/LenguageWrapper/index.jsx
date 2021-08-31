@@ -7,7 +7,6 @@ import English from '../../translations/en-us/index.json';
 export const Context = createContext();
 
 const LanguageWrapper = ({ children }) => {
-  // HOC with context to provide traslations over components
   const [locale, setLocale] = useState('en-es');
   const [messages, setMessages] = useState(Spanish);
 

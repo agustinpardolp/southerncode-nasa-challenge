@@ -17,7 +17,9 @@ const useStyles = makeStyles({
   },
 });
 
-const Menu = ({ label, options, onClick }) => {
+const Menu = ({
+  label, options, onClick, dataTestid,
+}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
@@ -46,11 +48,13 @@ const Menu = ({ label, options, onClick }) => {
         selected={selected}
         onNodeToggle={handleToggle}
         onNodeSelect={handleSelect}
+        data-testid={dataTestid}
       >
         <TreeItem nodeId="1" label={menuLabel}>
           {options
             && options.map((option) => (
               <TreeItem
+                key={option.id}
                 nodeId={option.id}
                 label={option.label}
                 value={option.item}
@@ -64,9 +68,16 @@ const Menu = ({ label, options, onClick }) => {
 };
 
 export default Menu;
-
+Menu.defaultProps = {
+  options: [],
+};
 Menu.propTypes = {
   label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  })),
   onClick: PropTypes.func.isRequired,
+  dataTestid: PropTypes.string.isRequired,
 };

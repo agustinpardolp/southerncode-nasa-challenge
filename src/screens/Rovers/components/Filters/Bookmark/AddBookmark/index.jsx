@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import Bookmark from '..';
 
 const AddBookmark = ({ popoverLabel, handleClick }) => (
-  <Bookmark popoverLabel={popoverLabel} handleClick={handleClick}>
-    <BookmarkIcon />
+  <Bookmark
+    popoverLabel={popoverLabel}
+    handleClick={handleClick}
+  >
+    <BookmarkIcon data-testid="add_bookmark" />
   </Bookmark>
 );
 

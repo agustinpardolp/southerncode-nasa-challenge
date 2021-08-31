@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/index.css';
@@ -7,9 +6,7 @@ import LanguageWrapper from './components/LenguageWrapper';
 
 ReactDOM.render(
   <LanguageWrapper>
-    <LanguageWrapper>
-      <App />
-    </LanguageWrapper>
+    <App />
   </LanguageWrapper>,
   document.getElementById('root'),
 );

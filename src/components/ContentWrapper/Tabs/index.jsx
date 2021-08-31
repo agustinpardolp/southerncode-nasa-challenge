@@ -22,7 +22,7 @@ const Tab = ({ tabs }) => {
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        {tabs.map((tab) => (
+        {tabs && tabs.map((tab) => (
           <StyledNavItem key={tab.id} label={tab.name} value={tab.route} />
         ))}
       </Tabs>

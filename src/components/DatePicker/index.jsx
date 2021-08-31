@@ -18,9 +18,10 @@ export default DatePicker;
 
 DatePicker.defaultProps = {
   size: 'small',
+  label: '',
 };
 DatePicker.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   variant: PropTypes.string.isRequired,
   size: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
